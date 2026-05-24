@@ -3,7 +3,7 @@ $textColor: #c1c2c5;
 $mainFont: Roboto;
 
 $secondaryColor: rgba(12, 12, 12, 0.4);
-$secondaryColorHighlight: #33343f;
+$secondaryColorHighlight: #8f1f2b;
 $secondaryColorLight: rgba(0, 0, 0, 0.5);
 $secondaryColorDark: rgba(12, 12, 12, 0.8);
 
@@ -65,15 +65,15 @@ input[type='number']::-webkit-outer-spin-button {
   border-color: rgba(0, 0, 0, 0.2);
   border-style: inset;
   border-width: 1px;
-  border-radius: 4px;
+  border-radius: 12px;
   outline: none;
   display: flex;
   flex-direction: column;
 }
 
 .context-menu-item {
-  padding: 8px;
-  border-radius: 4px;
+  padding: 10px 12px;
+  border-radius: 999px;
   background-color: transparent;
   outline: none;
   border: none;
@@ -86,6 +86,7 @@ input[type='number']::-webkit-outer-spin-button {
   }
   &:hover {
     background-color: $secondaryColorHighlight;
+    color: #ffd7dc;
     cursor: pointer;
   }
 }
@@ -126,6 +127,21 @@ button:active {
   gap: 20px;
 }
 
+.shadowbound-watermark {
+  position: absolute;
+  top: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+  padding: 8px 16px;
+  border-radius: 999px;
+  background: rgba(143, 31, 43, 0.82);
+  color: #ffe6ea;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  box-shadow: 0 10px 25px rgba(143, 31, 43, 0.35);
+}
+
 .inventory-control {
   display: flex;
 
@@ -140,7 +156,7 @@ button:active {
   .inventory-control-input {
     transition: 200ms;
     padding: 16px 8px;
-    border-radius: 2.5%;
+    border-radius: 14px;
     font-family: $mainFont;
     font-size: 16px;
     text-align: center;
@@ -159,7 +175,7 @@ button:active {
     background-color: $secondaryColor;
     transition: 200ms;
     padding: 12px 8px;
-    border-radius: 2.5%;
+    border-radius: 14px;
     border: none;
     text-transform: uppercase;
     font-family: $mainFont;
@@ -182,7 +198,7 @@ button:active {
   display: flex;
   flex-direction: column;
   padding: 16px;
-  border-radius: 4px;
+  border-radius: 14px;
   gap: 16px;
 }
 
@@ -205,7 +221,7 @@ button:active {
   display: flex;
   justify-content: center;
   align-items: center;
-  border-radius: 4px;
+  border-radius: 14px;
   fill: $textColor;
   &:hover {
     background-color: $secondaryColorHighlight;
@@ -238,7 +254,7 @@ button:active {
   justify-content: center;
   align-items: center;
   fill: white;
-  border-radius: 5% !important;
+  border-radius: 16px !important;
   background-color: $secondaryColor !important;
   &:hover {
     background-color: $secondaryColorDark !important;
@@ -259,10 +275,14 @@ button:active {
 // inventory grids
 .inventory-grid-wrapper {
   display: flex;
+  background: rgba(34, 35, 44, 0.4);
+  padding: 10px;
+  border-radius: 18px;
   flex-direction: column;
   gap: calc($gridGap * 2);
 }
 .inventory-grid-header-wrapper {
+  padding: 0 4px;
   display: flex;
   flex-direction: row;
   justify-content: space-between;
@@ -282,10 +302,11 @@ button:active {
 
 // inventory slots
 .inventory-slot {
+  box-shadow: 0 8px 18px rgba(0, 0, 0, 0.25);
   background-color: $secondaryColor;
   background-repeat: no-repeat;
   background-position: center;
-  border-radius: 2.5%;
+  border-radius: 14px;
   image-rendering: -webkit-optimize-contrast;
   position: relative;
   background-size: 7vh;
@@ -299,8 +320,8 @@ button:active {
   background-color: $mainColor;
   color: $textColor;
   text-align: center;
-  border-bottom-left-radius: 0.25vh;
-  border-bottom-right-radius: 0.25vh;
+  border-bottom-left-radius: 12px;
+  border-bottom-right-radius: 12px;
   border-top-color: rgba(0, 0, 0, 0.2);
   border-top-style: inset;
   border-top-width: 1px;
@@ -321,8 +342,8 @@ button:active {
   background-color: white;
   color: black;
   height: 12px;
-  border-top-left-radius: 0.25vh;
-  border-bottom-right-radius: 0.25vh;
+  border-top-left-radius: 12px;
+  border-bottom-right-radius: 12px;
   padding: 3px;
   font-size: 12px;
   font-family: $mainFont;
@@ -393,7 +414,7 @@ button:active {
   min-width: 200px;
   color: $textColor;
   font-family: $mainFont;
-  border-radius: 4px;
+  border-radius: 14px;
   border-color: rgba(0, 0, 0, 0.2);
   border-style: inset;
   border-width: 1px;
@@ -486,8 +507,8 @@ button:active {
   background-color: $secondaryColor;
   text-transform: uppercase;
   text-align: center;
-  border-top-left-radius: 0.25vh;
-  border-top-right-radius: 0.25vh;
+  border-top-left-radius: 12px;
+  border-top-right-radius: 12px;
   font-family: $mainFont;
   p {
     font-size: 11px;

@@ -1,0 +1,50 @@
+name: Build and Release on Main
+
+on:
+  push:
+    branches:
+      - main
+
+permissions:
+  contents: write
+
+jobs:
+  build-and-release:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+          cache-dependency-path: web/package-lock.json
+
+      - name: Install web dependencies
+        working-directory: web
+        run: npm ci
+
+      - name: Build web UI
+        working-directory: web
+        run: npm run build
+
+      - name: Package release artifact
+        run: |
+          mkdir -p dist
+          zip -r "dist/ox_inventory-${{ github.sha }}.zip" . \
+            -x "*.git*" "dist/*" "node_modules/*" "web/node_modules/*"
+
+      - name: Create release tag
+        id: release_tag
+        run: echo "tag=main-${GITHUB_SHA}" >> "$GITHUB_OUTPUT"
+
+      - name: Create GitHub release
+        uses: softprops/action-gh-release@v2
+        with:
+          tag_name: ${{ steps.release_tag.outputs.tag }}
+          name: Main build ${{ github.sha }}
+          generate_release_notes: true
+          files: dist/ox_inventory-${{ github.sha }}.zip
